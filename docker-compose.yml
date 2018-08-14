@@ -1,0 +1,4 @@
+english-scoring:
+  image: genny-project/english-scoring
+  ports:
+    - "4545:4545"
