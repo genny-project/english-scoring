@@ -12,7 +12,11 @@ app.use( bodyParser.json());
 /* Store the scores in memory */
 const scores = {};
 
-const ATS = new AWS.TranscribeService();
+const { accessKeyId, secretAccessKey } = process.env;
+
+const ATS = new AWS.TranscribeService({
+  accessKeyId, secretAccessKey
+});
 
 function startJob( url, sourceSentence ) {
   const jobID = uuidv4();
@@ -20,7 +24,7 @@ function startJob( url, sourceSentence ) {
   ATS.startTranscriptionJob({
     "TranscriptionJobName": jobID,
     "LanguageCode": "en-US",
-    "MediaFormat": "m4a",
+    "MediaFormat": "mp3",
     "Media": {
       "MediaFileUri": url
     }
